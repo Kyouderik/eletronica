@@ -12,36 +12,43 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Exibe a página de login.
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('auth.login'); // Certifique-se de que o arquivo de view existe em resources/views/auth/login.blade.php
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Lida com a requisição de autenticação de um usuário.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Autentica o usuário baseado nas credenciais enviadas
         $request->authenticate();
 
+        // Regenera a sessão para evitar roubo de sessão
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Redireciona para a rota home após login ou para a página que o usuário tentava acessar antes (caso exista)
+        return redirect()->intended(route('home'));  // Certifique-se de que a rota 'home' esteja corretamente definida
     }
 
     /**
-     * Destroy an authenticated session.
+     * Destroi a sessão autenticada e efetua o logout do usuário.
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Faz o logout do usuário
         Auth::guard('web')->logout();
 
+        // Invalida a sessão atual
         $request->session()->invalidate();
 
+        // Regenera o token CSRF
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Redireciona para a página inicial após o logout
+        return redirect('/');  // Redireciona para a página inicial (login)
     }
 }

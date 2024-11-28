@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sistema Eletrônica</title>
+    <title>Perfil - Sistema Eletrônica</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @media (max-width: 576px) {
@@ -20,6 +20,7 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">Eletrônica</a>
@@ -29,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        <a class="nav-link" href="/home">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/ordens">Ordens de Serviço</a>
@@ -41,7 +42,7 @@
                         <a class="nav-link" href="/estoque">Estoque</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users">Perfil</a>
+                        <a class="nav-link active" href="/profile/perfil">Perfil</a>
                     </li>
                     <!-- Botão de Logout -->
                     <li class="nav-item">
@@ -55,9 +56,23 @@
         </div>
     </nav>
 
+    <!-- Conteúdo Principal -->
     <div class="container mt-5">
-        <h1 class="text-center">Bem-vindo ao Sistema Eletrônica</h1>
-        <p class="text-center">Gerencie ordens de serviço, técnicos e estoque facilmente.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4>Perfil do Usuário</h4>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Nome:</strong> {{ Auth::user()->name }}</p>
+                        <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+                        <p><strong>Data de Criação:</strong> {{ Auth::user()->created_at->format('d/m/Y H:i') }}</p>
+                        <a href="/home" class="btn btn-secondary w-100 mt-3">Voltar para Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,17 +1,19 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    plugins: [],
+    plugins: [
+        laravel({
+            input: [
+                'resources/css/app.css', // Alterar se for SCSS para resources/sass/app.scss
+                'resources/js/app.js',
+            ],
+            refresh: true,
+        }),
+    ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'resources/js'),
+            '@': '/resources/js',
         },
     },
-    build: {
-        manifest: true,
-    },
-    css: {
-        input: 'resources/css/app.css', 
-    }
 });
