@@ -10,7 +10,6 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    // Define aonde o usuário será redirecionado após o login
     protected $redirectTo = '/home';
 
     public function __construct()
@@ -18,13 +17,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
+    public function showLoginForm()
+{
+    if (auth()->check()) {
+        return redirect()->route('home');
+    }
+
+    return view('auth.login');
+}
+
     protected function authenticated(Request $request, $user)
     {
-        return redirect()->route('home'); // Certifique-se de que aqui está redirecionando para "home"
+        return redirect()->route('home'); 
     }
     
-
-    // Método para realizar o logout
     public function logout(Request $request)
     {
         auth()->logout();

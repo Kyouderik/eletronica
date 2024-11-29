@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('estoques', function (Blueprint $table) {
             $table->id();
-            $table->string('nome'); // Nome do produto
-            $table->string('tipo'); // Tipo do produto (ex: 'TV', 'Celular', etc.)
-            $table->text('descricao'); // Descrição do produto
-            $table->integer('quantidade')->default(0); // Quantidade em estoque
-            $table->decimal('preco', 8, 2); // Preço do produto
-            $table->string('fornecedor'); // Nome do fornecedor
+            $table->string('nome'); 
+            $table->string('tipo'); 
+            $table->text('descricao'); 
+            $table->integer('quantidade')->default(0); 
+            $table->decimal('preco', 8, 2); 
+            $table->string('fornecedor'); 
             $table->timestamps();
         });
     }

@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class OrdemServico extends Model
 {
     use HasFactory;
-
-    // Especificando o nome da tabela no banco de dados
     protected $table = 'ordens_servico';
 
     protected $fillable = [

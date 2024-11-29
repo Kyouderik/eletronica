@@ -47,7 +47,6 @@
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Perfil</a>
                         </li>
-                        <!-- Botão de Logout -->
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                 @csrf

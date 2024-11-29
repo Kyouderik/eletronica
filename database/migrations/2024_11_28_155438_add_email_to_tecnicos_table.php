@@ -12,14 +12,14 @@ return new class extends Migration
         public function up()
     {
         Schema::table('tecnicos', function (Blueprint $table) {
-            $table->string('email')->unique();  // Adiciona a coluna 'email' com a restrição UNIQUE
+            $table->string('email')->unique();  
         });
     }
 
     public function down()
     {
         Schema::table('tecnicos', function (Blueprint $table) {
-            $table->dropColumn('email');  // Remove a coluna 'email'
+            $table->dropColumn('email');  
         });
     }
 
